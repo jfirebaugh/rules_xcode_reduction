@@ -1,0 +1,26 @@
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
+load(
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
+    "xcodeproj",
+)
+
+cc_library(
+    name = "main",
+    srcs = ["main.cc"],
+    deps = ["//lib"],
+)
+
+macos_application(
+    name = "app",
+    bundle_id = "io.buildbuddy.example",
+    infoplists = ["Info.plist"],
+    minimum_os_version = "10.12",
+    deps = [":main"],
+)
+
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "app",
+    tags = ["manual"],
+    targets = [":app"],
+)
