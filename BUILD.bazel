@@ -5,9 +5,11 @@ load(
 )
 
 cc_library(
-    name = "main",
-    srcs = ["main.cc"],
-    deps = ["//lib"],
+    name = "libs",
+    deps = [
+        "//lib/b",
+        "//lib/c",
+    ],
 )
 
 macos_application(
@@ -15,7 +17,7 @@ macos_application(
     bundle_id = "io.buildbuddy.example",
     infoplists = ["Info.plist"],
     minimum_os_version = "10.12",
-    deps = [":main"],
+    deps = [":libs"],
 )
 
 xcodeproj(
