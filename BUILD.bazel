@@ -6,10 +6,8 @@ load(
 
 cc_library(
     name = "libs",
-    deps = [
-        "//lib/b",
-        "//lib/c",
-    ],
+    srcs = ["lib.cpp"],
+    deps = ["//lib/a"],
 )
 
 macos_application(
@@ -22,6 +20,7 @@ macos_application(
 
 xcodeproj(
     name = "xcodeproj",
+    build_mode = "bazel",
     project_name = "app",
     tags = ["manual"],
     targets = [":app"],

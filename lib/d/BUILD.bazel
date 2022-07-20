@@ -1,5 +1,0 @@
-cc_library(
-    name = "d",
-    srcs = ["d.cpp"],
-    visibility = ["//visibility:public"],
-)

@@ -1,5 +1,0 @@
-objc_library(
-    name = "b",
-    visibility = ["//visibility:public"],
-    deps = ["//lib/c"],
-)

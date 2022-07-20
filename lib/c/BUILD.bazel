@@ -1,5 +1,0 @@
-cc_library(
-    name = "c",
-    visibility = ["//visibility:public"],
-    deps = ["//lib/a"],
-)
