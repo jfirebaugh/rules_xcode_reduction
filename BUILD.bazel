@@ -1,25 +1,16 @@
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:xcodeproj.bzl",
     "xcodeproj",
 )
 
-cc_library(
-    name = "libs",
-    srcs = ["lib.cpp"],
-    deps = ["//lib/a"],
-)
-
-macos_application(
+cc_binary(
     name = "app",
-    bundle_id = "io.buildbuddy.example",
-    infoplists = ["Info.plist"],
-    minimum_os_version = "10.12",
-    deps = [":libs"],
+    srcs = ["main.cpp"],
 )
 
 xcodeproj(
     name = "xcodeproj",
+    bazel_path = "./wrapper.sh",
     build_mode = "bazel",
     project_name = "app",
     tags = ["manual"],

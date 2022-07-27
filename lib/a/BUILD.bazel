@@ -1,5 +1,0 @@
-objc_library(
-    name = "a",
-    srcs = ["main.mm"],
-    visibility = ["//visibility:public"],
-)
