@@ -3,11 +3,19 @@ load(
     "xcodeproj",
 )
 
-cc_test(
-    name = "test",
-    srcs = ["main.cpp"],
-    deps = ["@bazel_tools//tools/cpp/runfiles"],
-    data = ["data.txt"]
+genrule(
+    name = "generate",
+    outs = ["generated.h", "generated.cpp"],
+    cmd = "echo 'std::string hello();' >>generated.h && echo 'std::string hello() { return \"Hello, world!\"; }' >>generated.cpp",
+)
+
+cc_binary(
+    name = "bin",
+    srcs = [
+        "main.cpp",
+        "generated.h",
+        "generated.cpp",
+    ],
 )
 
 xcodeproj(
@@ -15,5 +23,5 @@ xcodeproj(
     build_mode = "bazel",
     project_name = "app",
     tags = ["manual"],
-    targets = [":test"],
+    top_level_targets = [":bin"],
 )
