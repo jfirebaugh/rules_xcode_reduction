@@ -1,6 +1,27 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+    name = "build_bazel_rules_swift",
+    sha256 = "074fceacbc01111cc8236911c015a2f521634a43b7af898409a66cdced602439",
+    strip_prefix = "rules_swift-a25aed4e75893a55c1c98524201451c05f66ab89",
+    url = "https://github.com/bazelbuild/rules_swift/archive/a25aed4e75893a55c1c98524201451c05f66ab89.tar.gz",
+)
+
+load(
+    "@build_bazel_rules_swift//swift:repositories.bzl",
+    "swift_rules_dependencies",
+)
+
+swift_rules_dependencies()
+
+load(
+    "@build_bazel_rules_swift//swift:extras.bzl",
+    "swift_rules_extra_dependencies",
+)
+
+swift_rules_extra_dependencies()
+
+http_archive(
     name = "com_github_buildbuddy_io_rules_xcodeproj",
     sha256 = "b4e71c7740bb8cfa4bc0b91c0f18ac512debcc111ebe471280e24f579a3b0782",
     url = "https://github.com/buildbuddy-io/rules_xcodeproj/releases/download/0.10.2/release.tar.gz",
